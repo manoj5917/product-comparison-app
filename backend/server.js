@@ -17,7 +17,8 @@ mongoose.connect(MONGODB_URI)
   .catch(err => console.log('MongoDB connection error:', err));
 
 // Routes
-app.use('/api/products', require('./routes/products'));
+//app.use('/api/products', require('./routes/products'));
+app.use('/api/external-products', require('./routes/external-products'));
 
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to Product Comparison API' });
