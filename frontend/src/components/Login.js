@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Auth.css';
 
-function Login({ onLoginSuccess }) {
+function Login({ onLogin, setCurrentPage }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -21,16 +21,16 @@ function Login({ onLoginSuccess }) {
 
       const data = await response.json();
 
-      if (!response.ok) {
-        setError(data.error || 'Login failed');
-        return;
+      if (response.ok) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        onLogin();
+      } else {
+        setError(data.message || 'Login failed');
       }
-
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      onLoginSuccess(data.user);
     } catch (err) {
       setError('Error connecting to server');
+      console.error('Error:', err);
     } finally {
       setLoading(false);
     }
@@ -38,8 +38,8 @@ function Login({ onLoginSuccess }) {
 
   return (
     <div className="auth-container">
-      <div className="auth-card">
-        <h2>Login</h2>
+      <div className="auth-form">
+        <h1>Login</h1>
         {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit}>
           <input
@@ -60,6 +60,16 @@ function Login({ onLoginSuccess }) {
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
+        <p>
+          Don't have an account?{' '}
+          <button
+            type="button"
+            onClick={() => setCurrentPage('register')}
+            className="link-btn"
+          >
+            Register here
+          </button>
+        </p>
       </div>
     </div>
   );

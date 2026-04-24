@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './Auth.css';
 
-function Register({ onRegisterSuccess }) {
-  const [username, setUsername] = useState('');
+function Register({ onRegister, setCurrentPage }) {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -24,21 +24,21 @@ function Register({ onRegisterSuccess }) {
       const response = await fetch('http://localhost:5000/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, email, password })
+        body: JSON.stringify({ name, email, password })
       });
 
       const data = await response.json();
 
-      if (!response.ok) {
-        setError(data.error || 'Registration failed');
-        return;
+      if (response.ok) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        onRegister();
+      } else {
+        setError(data.message || 'Registration failed');
       }
-
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      onRegisterSuccess(data.user);
     } catch (err) {
       setError('Error connecting to server');
+      console.error('Error:', err);
     } finally {
       setLoading(false);
     }
@@ -46,15 +46,15 @@ function Register({ onRegisterSuccess }) {
 
   return (
     <div className="auth-container">
-      <div className="auth-card">
-        <h2>Register</h2>
+      <div className="auth-form">
+        <h1>Register</h1>
         {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
           />
           <input
@@ -82,6 +82,16 @@ function Register({ onRegisterSuccess }) {
             {loading ? 'Registering...' : 'Register'}
           </button>
         </form>
+        <p>
+          Already have an account?{' '}
+          <button
+            type="button"
+            onClick={() => setCurrentPage('login')}
+            className="link-btn"
+          >
+            Login here
+          </button>
+        </p>
       </div>
     </div>
   );

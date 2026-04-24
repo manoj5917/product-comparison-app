@@ -2,89 +2,92 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #ff9900, #ffb84d);
-  padding: 20px;
+  min-height: 60vh;
+  padding: 2rem;
 }
 
-.auth-card {
+.auth-form {
   background: white;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
 }
 
-.auth-card h2 {
+.auth-form h1 {
   text-align: center;
-  color: #333;
-  margin-bottom: 30px;
-  font-size: 1.8em;
+  color: #2c3e50;
+  margin-top: 0;
 }
 
-.auth-card form {
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.auth-form form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 1rem;
 }
 
-.auth-card input {
-  padding: 12px;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  font-size: 1em;
+.auth-form input {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
   transition: border-color 0.3s;
 }
 
-.auth-card input:focus {
+.auth-form input:focus {
   outline: none;
-  border-color: #ff9900;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.auth-card button {
-  padding: 12px;
-  background-color: #ff9900;
+.auth-form button {
+  padding: 0.75rem;
+  background-color: #667eea;
   color: white;
   border: none;
-  border-radius: 5px;
-  font-size: 1em;
+  border-radius: 4px;
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.auth-card button:hover:not(:disabled) {
-  background-color: #e68a00;
+.auth-form button:hover:not(:disabled) {
+  background-color: #5568d3;
 }
 
-.auth-card button:disabled {
-  background-color: #ccc;
+.auth-form button:disabled {
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
-.error-message {
-  background-color: #f8d7da;
-  color: #721c24;
-  padding: 12px;
-  border-radius: 5px;
-  margin-bottom: 15px;
+.auth-form p {
   text-align: center;
-  border: 1px solid #f5c6cb;
-  font-size: 0.95em;
-}
-
-.auth-toggle {
-  text-align: center;
-  margin-top: 20px;
   color: #666;
+  margin-top: 1rem;
 }
 
-.auth-toggle button {
+.link-btn {
   background: none;
   border: none;
-  color: #ff9900;
+  color: #667eea;
   cursor: pointer;
   text-decoration: underline;
   font-weight: bold;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.link-btn:hover {
+  color: #5568d3;
 }

@@ -1,0 +1,66 @@
+.comparison-table {
+  margin-top: 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.comparison-table h2 {
+  color: #2c3e50;
+  margin-top: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #ddd;
+}
+
+table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+table td {
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.source-badge {
+  background-color: #667eea;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.price {
+  font-weight: bold;
+  color: #00aa00;
+  font-size: 1.1rem;
+}
+
+.view-link {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.view-link:hover {
+  color: #5568d3;
+  text-decoration: underline;
+}
